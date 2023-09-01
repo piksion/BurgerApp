@@ -1,1 +1,1 @@
-# burger repo
+# burger app
