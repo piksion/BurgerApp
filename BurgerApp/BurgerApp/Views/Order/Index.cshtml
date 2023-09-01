@@ -1,0 +1,30 @@
+﻿﻿@using BurgerApp.ViewModels.Orders;
+@model List<OrderListViewModel>
+
+    <div>
+        List of Orders:
+    </div>
+<div>
+    <a asp-controller="Order" asp-action="CreateOrder">Create order</a>
+</div>
+@foreach(OrderListViewModel orderModel in Model)
+{
+
+    <div class="card text-white bg-success mb-3" style="max-width: 18rem; margin-left:10px;">
+        <div class="card-body">
+            <h5 class="card-title">Order: @orderModel.OrderName</h5>
+        </div>
+        <div class="card-footer bg-transparent border-success"> <strong>@orderModel.TotalPrice DEN</strong></div>
+        <div class="card-footer bg-transparent border-success"> <strong>Address @orderModel.Address</strong></div>
+        <div class="card-footer bg-transparent border-success"> <strong>Location @orderModel.Location</strong></div>
+        <div class="card-footer bg-transparent border-success"> <strong>Delivered @orderModel.IsDelivered</strong></div>
+        <div class="card-footer bg-transparent border-success"> Burgers
+            @foreach (var burgerOrder in orderModel.burgerOrders)
+            {
+                <li>@burgerOrder.Burger.Name</li>
+            }
+        </div>
+        <a asp-controller="Order" asp-action="Details" asp-route-id="@orderModel.OrderId">Details</a>
+        <a asp-controller="Order" asp-action="DeleteOrder" asp-route-id="@orderModel.OrderId">Delete</a>
+    </div>
+}

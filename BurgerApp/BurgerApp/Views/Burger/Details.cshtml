@@ -1,0 +1,17 @@
+﻿﻿@using BurgerApp.ViewModels.Burgers;
+@model BurgerDetailsViewModel
+
+<div class="text-center">
+    <h2 class="display-4">Burger Details</h2>
+</div>
+
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Burger: @Model.BurgerName</h5>
+        <p class="card-text">Price: @Model.BurgerPrice<strong> MKD </strong></p>
+        <p class="card-text">Fries: @Model.HasFries</p>
+        <p class="card-text">Vegetarian: @Model.IsVegetarian</p>
+        <p class="card-text">Vegan: @Model.IsVegan</p>
+    </div>
+</div>
