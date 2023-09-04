@@ -10,9 +10,9 @@ namespace BurgerApp.Services.Interfaces
 	public interface IOrderService
 	{
 		List<OrderListViewModel> GetAllOrders();
-		void AddOrder(CreateOrderViewModel model);
+		void CreateOrder(CreateOrderViewModel model);
 		OrderDetailsViewModel GetOrderDetails(int id);
 		void DeleteOrder(int id);	
-		void MakeOrder(CreateOrderViewModel model);
+		void MakeOrder(MakeOrderViewModel model);
 	}
 }

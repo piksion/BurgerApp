@@ -8,6 +8,7 @@ namespace BurgerApp.Controllers
 	public class OrderController : Controller
 	{
 		private IOrderService _orderService;
+        private IBurgerService _burgerService;
 
         public OrderController()
         {
@@ -47,6 +48,36 @@ namespace BurgerApp.Controllers
             {
                 return View(ex.Message);
             }
+        }
+        public IActionResult CreateOrder()
+        {
+            CreateOrderViewModel orderViewModel = new CreateOrderViewModel();
+            ViewBag.Orders = _burgerService.GetBurgerDropDowns();
+
+            return View(orderViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult CreateBurgerPost(CreateOrderViewModel orderViewModel)
+        {
+            _orderService.CreateOrder(orderViewModel);
+            return RedirectToAction("Index");   
+        }
+
+        public IActionResult MakeOrder(int id)
+        {
+            MakeOrderViewModel orderViewModel = new MakeOrderViewModel();
+            orderViewModel.OrderId = id;
+
+            ViewBag.Burgers = _burgerService.GetBurgerDropDowns();
+            return View(orderViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult MakeOrderPost(MakeOrderViewModel orderViewModel)
+        {
+            _orderService.MakeOrder(orderViewModel);
+            return RedirectToAction("Index", new { id = orderViewModel.OrderId });  
         }
     }
 }

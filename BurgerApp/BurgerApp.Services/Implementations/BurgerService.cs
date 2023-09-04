@@ -1,4 +1,5 @@
-﻿using BurgerApp.DataAcess.Implementations;
+﻿using BurgerApp.DataAcess;
+using BurgerApp.DataAcess.Implementations;
 using BurgerApp.DataAcess.Interfaces;
 using BurgerApp.Domain.Burgers;
 using BurgerApp.Mappers.Burgers;
@@ -20,7 +21,7 @@ namespace BurgerApp.Services.Implementations
             _burgerRepository = new BurgerRepository();
         }
 
-        public void CreateOrder(CreateBurgerViewModel model)
+        public void CreateBurger(CreateBurgerViewModel model)
 		{
 			Burger burgerDb = model.CreateBurger();
 			_burgerRepository.Insert(burgerDb);
@@ -58,5 +59,24 @@ namespace BurgerApp.Services.Implementations
 		{
 			_burgerRepository.Delete(id);
 		}
+		public List<string> MostPopularBurger()
+		{
+			var burgers = StaticDb.Orders
+				.SelectMany(order => order.BurgersOrders)
+				.GroupBy(burgers => burgers.BurgerId)
+				.OrderByDescending(group => group.Count())
+				.FirstOrDefault();
+
+			if(burgers == null)
+			{
+				return new List<string> ();
+			}
+
+			var mostPopularBurger = burgers
+				.Select(burgers => burgers.Burger.Name)
+				.ToList();
+			return mostPopularBurger;
+		}
+
 	}
 }

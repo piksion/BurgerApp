@@ -12,11 +12,15 @@ namespace BurgerApp.DataAcess.Implementations
 {
 	public class BurgerRepository : IRepository<Burger>	
 	{
-		private IRepository<Burger> _burgerRepository;
-		private IRepository<Order> _orderRepository;
 		public void Delete(int id)
 		{
-			_burgerRepository.Delete(id);
+			Burger burgerDb = StaticDb.Burgers.FirstOrDefault(b => b.Id == id);
+			if (burgerDb == null)
+			{
+				throw new Exception($"Burger with id {id} does not exist!");
+
+			}
+			StaticDb.Burgers.Remove(burgerDb);
 		}
 
 		public List<Burger> GetAll()
@@ -31,12 +35,15 @@ namespace BurgerApp.DataAcess.Implementations
 
 		public void Insert(Burger entity)
 		{
-			throw new NotImplementedException();
+			entity.Id = ++StaticDb.BurgerId;
+			StaticDb.Burgers.Add(entity);
 		}
 
 		public void Update(Burger entity)
 		{
-			throw new NotImplementedException();
+			Burger burgerDb = StaticDb.Burgers.FirstOrDefault(x=>x.Id == entity.Id);
+			int index = StaticDb.Burgers.IndexOf(entity);
+			StaticDb.Burgers[index] = entity;
 		}
 	}
 }

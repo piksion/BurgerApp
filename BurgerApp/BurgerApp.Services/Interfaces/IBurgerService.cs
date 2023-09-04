@@ -10,9 +10,10 @@ namespace BurgerApp.Services.Interfaces
 	public interface IBurgerService
 	{
 		List<BurgerListViewModel> GetAllBurgers();
-		void CreateOrder(CreateBurgerViewModel model);
+		void CreateBurger(CreateBurgerViewModel model);
 		BurgerDetailsViewModel GetBurgerDetails(int id);
 		List<BurgerDropDownViewModel> GetBurgerDropDowns();
 		void DeleteOrder(int id);
+		List<string> MostPopularBurger();
 	} 
 }
