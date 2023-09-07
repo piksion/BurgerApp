@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BurgerApp.ViewModels.Orders
 {
-	public class MakeOrderViewModel
+	public class AddBurgerViewModel
 	{
 		public int BurgerId { get; set; }
 		public int OrderId { get; set; }

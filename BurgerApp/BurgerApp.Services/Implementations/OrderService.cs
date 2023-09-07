@@ -19,12 +19,13 @@ namespace BurgerApp.Services.Implementations
 			_orderRepository = new OrderRepository();
 			_burgerRepository = new BurgerRepository();
 		}
-		public void AddOrder(CreateOrderViewModel model)
-		{
-			Order orderDb = model.AddOrder();
-			_orderRepository.Insert(orderDb);
 
-		}
+		public void CreateOrder(CreateOrderViewModel model)
+		{
+
+            Order orderDb = model.AddOrder();
+            _orderRepository.Insert(orderDb);
+        }
 
 		public void DeleteOrder(int id)
 		{
@@ -49,25 +50,28 @@ namespace BurgerApp.Services.Implementations
 			return orderDetailsViewModel;
 		}
 
-		public void MakeOrder(CreateOrderViewModel model)
-		{
-			Burger burgerDb = _burgerRepository.GetById(model.BurgerId);
-			if(model.BurgerId == null)
-			{
-				throw new Exception("Burger doesn't exist");
-			}
-			Order orderDb = _orderRepository.GetById(model.OrderId);
-			if(model.OrderId == null)
-			{
-				throw new Exception("Order doesn't exist");
-			}
-			orderDb.BurgersOrders.Add(new BurgerOrder
-			{
-				OrderId = model.OrderId,
-				BurgerId = model.BurgerId,
-				Orders = orderDb,
-				Burger = burgerDb
-			});
-		}
-	}
+        public void AddBurgerToOrder(AddBurgerViewModel model)
+        {
+            Burger burgerDb = _burgerRepository.GetById(model.BurgerId);
+            if (model.BurgerId == null)
+            {
+                throw new Exception("Burger doest exists");
+            }
+            Order orderDb = _orderRepository.GetById(model.OrderId);
+            if (orderDb == null)
+            {
+                throw new Exception("Order not found");
+            }
+            orderDb.BurgersOrders.Add(new BurgerOrder
+            {
+                OrderId = model.OrderId,
+                Burger = burgerDb,
+                Orders = orderDb,
+                BurgerId = model.BurgerId,
+            });
+
+            _orderRepository.Update(orderDb);
+        }
+
+    }
 }

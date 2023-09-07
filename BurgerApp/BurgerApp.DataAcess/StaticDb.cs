@@ -17,9 +17,9 @@ namespace BurgerApp.DataAcess
 
 		static StaticDb()
 		{
-			BurgerId = 4;
-			OrderId = 2;
-			Burgers = new List<Burger>()
+			BurgerId = 3;
+			OrderId = 4;
+			Burgers = new List<Burger>
 			{
 				new Burger
 				{
@@ -74,7 +74,7 @@ namespace BurgerApp.DataAcess
 					}
 				}
 			};
-			Orders = new List<Order>()
+			Orders = new List<Order>
 			{
 				new Order
 				{
@@ -88,9 +88,9 @@ namespace BurgerApp.DataAcess
 						new BurgerOrder
 						{
 							Id = 1,
-							Burger = Burgers[0],
+							Burger = Burgers[1],
 							OrderId = 1,
-							BurgerId = Burgers[0].Id
+							BurgerId = Burgers[1].Id
 						},
 						new BurgerOrder
 						{

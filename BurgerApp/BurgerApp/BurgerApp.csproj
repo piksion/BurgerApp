@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BurgerApp.DataAcess\BurgerApp.DataAcess.csproj" />
     <ProjectReference Include="..\BurgerApp.Domain\BurgerApp.Domain.csproj" />
+    <ProjectReference Include="..\BurgerApp.Helpers\BurgerApp.Helpers.csproj" />
     <ProjectReference Include="..\BurgerApp.Mappers\BurgerApp.Mappers.csproj" />
     <ProjectReference Include="..\BurgerApp.Services\BurgerApp.Services.csproj" />
     <ProjectReference Include="..\BurgerApp.ViewModels\BurgerApp.ViewModels.csproj" />

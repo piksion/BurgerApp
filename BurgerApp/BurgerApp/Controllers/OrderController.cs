@@ -66,7 +66,7 @@ namespace BurgerApp.Controllers
 
         public IActionResult MakeOrder(int id)
         {
-            MakeOrderViewModel orderViewModel = new MakeOrderViewModel();
+            AddBurgerViewModel orderViewModel = new AddBurgerViewModel();
             orderViewModel.OrderId = id;
 
             ViewBag.Burgers = _burgerService.GetBurgerDropDowns();
@@ -74,9 +74,9 @@ namespace BurgerApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult MakeOrderPost(MakeOrderViewModel orderViewModel)
+        public IActionResult MakeOrderPost(AddBurgerViewModel orderViewModel)
         {
-            _orderService.MakeOrder(orderViewModel);
+            _orderService.AddBurgerToOrder(orderViewModel);
             return RedirectToAction("Index", new { id = orderViewModel.OrderId });  
         }
     }

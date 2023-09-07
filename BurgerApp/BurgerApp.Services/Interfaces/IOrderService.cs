@@ -13,6 +13,6 @@ namespace BurgerApp.Services.Interfaces
 		void CreateOrder(CreateOrderViewModel model);
 		OrderDetailsViewModel GetOrderDetails(int id);
 		void DeleteOrder(int id);	
-		void MakeOrder(MakeOrderViewModel model);
+		void AddBurgerToOrder(AddBurgerViewModel model);
 	}
 }

@@ -1,0 +1,12 @@
+﻿﻿@using BurgerApp.ViewModels.Burgers;
+@model BurgerDetailsViewModel
+
+
+<h2>Are you sure that u want to delete the following burger: </h2>
+<p>Name: @Model.BurgerName</p>
+<p>Price: @Model.BurgerPrice</p>
+<p>Vegetarian: @Model.IsVegetarian</p>
+<p>Vegan: @Model.IsVegan</p>
+<p>Fries: @Model.HasFries</p>
+<a class="btn" asp-controller="Burger" asp-action="DeleteBurgerConfirm" asp-route-id="@Model.BurgerId">Delete</a>
+<a class="btn" asp-controller="Burger" asp-action="Index">Back</a>

@@ -35,18 +35,14 @@ namespace BurgerApp.Services.Implementations
 		}
 		public BurgerDetailsViewModel GetBurgerDetails(int id)
 		{
-			if(id <= 0)
-			{
-				throw new Exception($"Burger with id {id} was not found!");
-			}
-
 			Burger burgerDb = _burgerRepository.GetById(id);
 			if (burgerDb == null)
 			{
-				throw new Exception($"Burger with id {id} was not found!");
+				throw new Exception("Burger with the id not found");
 			}
+
 			BurgerDetailsViewModel burgerDetailsViewModel = BurgerMapper.ToBurgerDetailsViewModel(burgerDb);
-		    return burgerDetailsViewModel;
+			return burgerDetailsViewModel;
 		}
 
 		public List<BurgerDropDownViewModel> GetBurgerDropDowns()

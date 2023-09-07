@@ -1,0 +1,24 @@
+﻿﻿@using BurgerApp.ViewModels.Orders;
+@model OrderDetailsViewModel
+
+<div class="text-center">
+    <h2 class="display-4">Order Details</h2>
+</div>
+<div class="text-center">
+    <a asp-controller="Order" asp-action="AddBurger" asp-route-id="@Model.OrderId">Add burger</a>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Order: @Model.OrderName</h5>
+        <p class="card-text">Price: @Model.TotalPrice<strong> MKD </strong></p>
+        <p class="card-text">Address: @Model.Address</p>
+        <p class="card-text">Is delivered: @Model.IsDelivered</p>
+        <p class="card-text">Location: @Model.Location</p>
+        <p class="card-text">Burgers:</p>
+        @foreach (var burgerOrders in Model.burgerOrders)
+        {
+            <li>@burgerOrders.Burger.Name</li>
+        }
+    </div>
+</div>
